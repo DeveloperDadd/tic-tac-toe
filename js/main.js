@@ -13,14 +13,20 @@ function init () {
     heading.textContent = "Tic-Tac-Toe";
     board.appendChild(heading);
 
-    let grid = document.createElement("div");
+    createButtons();
+   
     grid.classList.add("border");
     grid.classList.add("border-dark");
     grid.classList.add("w-25");
-    board.appendChild(grid);
 }
 
 function createButtons() {
-    let button = document.createElement("button");
-    grid.appendChild()
+    let grid = document.createElement("div");
+    
+    board.appendChild(grid);
+    for (let i = 0; i < 9; i++) {
+        let button = document.createElement("button");
+        button.id = `button${i}`;
+        grid.appendChild(button);
+    }
 }
