@@ -26,7 +26,7 @@ function createButtons() {
     board.appendChild(grid);
     for (let i = 0; i < 9; i++) {
         let button = document.createElement("button");
-        button.id = `button${i}`;
+        button.id = `square${i}`;
         grid.appendChild(button);
     }
 }
