@@ -22,7 +22,6 @@ function init () {
 
 function createButtons() {
     let grid = document.createElement("div");
-    
     board.appendChild(grid);
     for (let i = 0; i < 9; i++) {
         let button = document.createElement("button");
