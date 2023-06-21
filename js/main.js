@@ -7,3 +7,7 @@ function init () {
     heading.textContent = "Tic-Tac-Toe";
     board.appendChild(heading);
 }
+
+function createButtons() {
+    
+}
