@@ -10,8 +10,25 @@ let currentTurn;
 let turns = ["","","","","","","","",""];
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
-//let playerXName = getPlayerXName();
-//let playerOName = getPlayerOName();
+getPlayerXName();
+getPlayerOName();
+
+let playerX = {
+    name : function getPlayerXName() {
+        let name = prompt("Player 1: Please enter your username", "Player X");
+        return name;
+    },
+    symbol : 'X'
+}
+
+let playerO = {
+    name : function getPlayerOName() {
+        let name = prompt("Player 1: Please enter your username", "Player O");
+        return name;
+    },
+    symbol : 'O'
+}
+
 
 window.addEventListener('load', init);
 
@@ -23,6 +40,9 @@ function init () {
 
     createButtons();
 
+    getPlayerXName();
+    getPlayerOName();
+    
     resetButton();
     resetButton.addEventListener('click', )
 
@@ -55,13 +75,4 @@ function resetButton () {
     board.appendChild(resetButton);
 }
 
-function getPlayerXName() {
-    let username = prompt("Player 1: Please enter your username", "Player X");
-    return username;
-}
-
-function getPlayerOName() {
-    let username = prompt("Player 1: Please enter your username", "Player O");
-    return username;
-}
 
