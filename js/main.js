@@ -23,10 +23,15 @@ function init () {
 function createButtons() {
     let grid = document.createElement("div");
     board.appendChild(grid);
-    for (let i = 0; i < 9; i++) {
+    for (let i = 1; i < 10; i++) {
+        if (i === 1 || i === 4 || i === 7) {
+            let column = document.createElement("div")
+            column.classList.add("col-sm");
+            column.classList.add("col-4");
+            grid.appendChild(column);
+        }
         let button = document.createElement("button");
-        button.id = `square${i}`;
+        button.id = `square-${i}`;
         grid.appendChild(button);
     }
 }
-test
