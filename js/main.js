@@ -8,7 +8,6 @@ board.classList.add("align-items-center")
 
 let symbols = ["X", "O"];
 let currentTurn = 1;
-let players = [];
 let turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
 players = [{
     "symbol" : symbols[0],
