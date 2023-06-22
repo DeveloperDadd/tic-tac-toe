@@ -14,7 +14,7 @@ function init () {
     board.appendChild(heading);
 
     createButtons();
-   
+
     grid.classList.add("border");
     grid.classList.add("border-dark");
     grid.classList.add("w-25");
