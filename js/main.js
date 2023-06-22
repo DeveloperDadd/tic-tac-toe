@@ -6,29 +6,21 @@ board.classList.add("d-flex");
 board.classList.add("flex-column")
 board.classList.add("align-items-center")
 
-let currentTurn;
-let turns = ["","","","","","","","",""];
+let symbols = ["X", "O"];
+let currentTurn = 1;
+let players = [];
+let turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
+players = [{
+    "symbol" : symbols[0],
+    "value" : 1,
+    "name" : "Player 1"
+}, 
+{
+    "symbol" : symbols[1],
+    "value": 2,
+    "name" : "Player 2"
+}]
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
-getPlayerXName();
-getPlayerOName();
-
-let playerX = {
-    name : function getPlayerXName() {
-        let name = prompt("Player 1: Please enter your username", "Player X");
-        return name;
-    },
-    symbol : 'X'
-}
-
-let playerO = {
-    name : function getPlayerOName() {
-        let name = prompt("Player 1: Please enter your username", "Player O");
-        return name;
-    },
-    symbol : 'O'
-}
-
 
 window.addEventListener('load', init);
 
@@ -40,16 +32,21 @@ function init () {
 
     createButtons();
 
-    getPlayerXName();
-    getPlayerOName();
-    
-    resetButton();
-    resetButton.addEventListener('click', )
+    let square1 = document.getElementById("square-1");
+    let square2 = document.getElementById("square-2");
+    let square3 = document.getElementById("square-3");
+    let square4 = document.getElementById("square-4");
+    let square5 = document.getElementById("square-5");
+    let square6 = document.getElementById("square-6");
+    let square7 = document.getElementById("square-7");
+    let square8 = document.getElementById("square-8");
+    let square9 = document.getElementById("square-9");
 
-    currentTurn = 1;
+    createResetButton();
+    resetButton.addEventListener('click', resetGame);
+
 }
-
-
+   
 function createButtons() {
     let grid = document.createElement("div");
     board.appendChild(grid);
@@ -66,7 +63,7 @@ function createButtons() {
     }
 }
 
-function resetButton () {
+function createResetButton () {
     let resetButton = document.createElement("button");
     resetButton.textContent = "Start Over";
     resetButton.setAttribute("id", resetButton);
@@ -75,4 +72,45 @@ function resetButton () {
     board.appendChild(resetButton);
 }
 
+function resetTurns() {
+    return turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
+}
+function resetCounter() {
+    return currentTurn = 1; 
+}
+function resetGame() {
+    resetTurns();
+    resetCounter;
+}
 
+
+//Check Win 
+/*
+    turns = [{
+        player: players[0].value, // x
+    },
+    {
+        player: players[0].value, // o
+    }]...
+
+
+    function checkWinCondition () {
+        var first = null;
+        var second = null;
+        var third = null;
+
+        for(let i = 0; i < winConditions.length; i++) {
+            // loop thru each element in the win condition
+            // get the first winTotals value, ex. 3
+            //if total of winCondition[0] = 3, player 1 wins
+            //if total == 6, player 2 wins
+            //var total = 0;
+            var v = winTotal[0];
+            if ( v == total) {
+                gameStatus
+            }
+           
+        }
+    }
+
+*/
