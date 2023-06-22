@@ -32,8 +32,18 @@ function init () {
 
     createButtons();
 
-    resetButton();
-    resetButton.addEventListener('click', )
+    let square1 = document.getElementById("square-1");
+    let square2 = document.getElementById("square-2");
+    let square3 = document.getElementById("square-3");
+    let square4 = document.getElementById("square-4");
+    let square5 = document.getElementById("square-5");
+    let square6 = document.getElementById("square-6");
+    let square7 = document.getElementById("square-7");
+    let square8 = document.getElementById("square-8");
+    let square9 = document.getElementById("square-9");
+
+    createResetButton();
+    resetButton.addEventListener('click', resetGame);
 
 }
    
@@ -53,7 +63,7 @@ function createButtons() {
     }
 }
 
-function resetButton () {
+function createResetButton () {
     let resetButton = document.createElement("button");
     resetButton.textContent = "Start Over";
     resetButton.setAttribute("id", resetButton);
@@ -61,6 +71,18 @@ function resetButton () {
     resetButton.classList.add("btn-primary")
     board.appendChild(resetButton);
 }
+
+function resetTurns() {
+    return turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
+}
+function resetCounter() {
+    return currentTurn = 1; 
+}
+function resetGame() {
+    resetTurns();
+    resetCounter;
+}
+
 
 //Check Win 
 /*
