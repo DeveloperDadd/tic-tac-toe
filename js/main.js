@@ -6,7 +6,6 @@ board.classList.add("flex-column");
 board.classList.add("align-items-center");
 
 let currentPlayer = "X";
-let currentTurn = 1;
 let turns = ["","","","","","","","",""];
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
@@ -43,6 +42,7 @@ function createButtons() {
             Number(index);
             turns[index] = currentPlayer;
             button.textContent = currentPlayer; 
+            checkWinner();
             changeTurn();
         }
         button.addEventListener('click', tileClicked);
@@ -71,6 +71,26 @@ function changeTurn() {
 }
 
 //Check Win 
+
+function checkWinner() {
+    let roundWon = false;
+
+    for (let i = 0; i < winningCombos.length; i++) {
+        const winCondition = winningCombos[i];
+        const tileOne = turns[winCondition[0]];
+        const tileTwo = turns[winCondition[1]];
+        const tileThree = turns[winCondition[2]]; 
+
+        if(tileOne === "" || tileTwo === "" || tileThree === "") {
+            continue;
+        }
+        if(tileOne === tileTwo && tileTwo === tileThree) {
+            roundWon = true;
+            alert(`${currentPlayer}` wins!)
+        }
+    }
+}
+
 /*
     turns = [{
         player: players[0].value, // x
