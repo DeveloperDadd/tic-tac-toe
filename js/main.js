@@ -22,7 +22,6 @@ function init () {
     createButtons();
 
     createResetButton();
-    resetButton.addEventListener('click', restartGame);
 }
    
 function createButtons() {
