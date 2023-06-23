@@ -10,6 +10,10 @@ let turns = ["","","","","","","","",""];
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 let running = false;
 
+let winner = document.createElement("h1");
+winner.textContent = "";
+board.appendChild(winner);
+
 window.addEventListener('load', init);
 
 function init () {
@@ -22,6 +26,7 @@ function init () {
     createButtons();
 
     createResetButton();
+
 }
    
 function createButtons() {
@@ -30,12 +35,10 @@ function createButtons() {
     for (let i = 1; i < 10; i++) {
         if (i === 1 || i === 4 || i === 7) {
             let column = document.createElement("div")
-            column.classList.add("col-sm");
-            column.classList.add("col-4");
+            column.classList.add("col-sm", "col-4");
             grid.appendChild(column);
         }
         let button = document.createElement("button");
-        button.textContent = "";
         button.classList.add("tile");
         button.setAttribute("index", i-1);
         function tileClicked() {
@@ -57,8 +60,7 @@ function createResetButton () {
     let resetButton = document.createElement("button");
     resetButton.textContent = "Start Over";
     resetButton.setAttribute("id", "resetButton");
-    resetButton.classList.add("btn");
-    resetButton.classList.add("btn-primary")
+    resetButton.classList.add("btn", "btn-primary");
     board.appendChild(resetButton);
     resetButton.addEventListener('click', function restartGame() {
         currentPlayer = "X";
@@ -66,12 +68,19 @@ function createResetButton () {
         for (let i = 0; i < turns.length; i++) {
             document.getElementsByClassName("tile")[i].textContent = turns[i];
         }
+        winner.textContent = "";
         running = true;
     })
 }
 
 function changeTurn() {
     currentPlayer = (currentPlayer === "X") ? "O" : "X";
+}
+
+function createWinner () {
+    let winner = document.createElement("h3");
+    winner.textContent = "";
+    board.appendChild(winner);
 }
 
 //Check Win 
@@ -94,10 +103,10 @@ function checkWinner() {
         }
     }
     if(roundWon) {
-        alert(`${currentPlayer} wins!`);
+        winner.textContent = `${currentPlayer} wins!`;
         running = false;
     } else if (!turns.includes("")) {
-        alert("Draw! Play again?");
+        winner.textContent = "Draw! Play again?";
         running = false;
     } else {
         changeTurn();
