@@ -48,7 +48,7 @@ function createButtons() {
             grid.appendChild(column);
         }
         let button = document.createElement("button");
-        button.id = `square-${i}`;
+        button.classList.add("tile");
         grid.appendChild(button);
     }
 }
