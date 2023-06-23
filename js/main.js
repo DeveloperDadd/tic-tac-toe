@@ -1,10 +1,9 @@
 let board = document.getElementById("board");
 board.classList.add("text-primary");
 board.classList.add("container-fluid");
-board.classList.add("text-center");
 board.classList.add("d-flex");
-board.classList.add("flex-column")
-board.classList.add("align-items-center")
+board.classList.add("flex-column");
+board.classList.add("align-items-center");
 
 let currentPlayer = "X";
 let currentTurn = 1;
@@ -36,6 +35,7 @@ function createButtons() {
             grid.appendChild(column);
         }
         let button = document.createElement("button");
+        button.textContent = "";
         button.classList.add("tile");
         button.setAttribute("index", i-1);
         function tileClicked() {
@@ -43,6 +43,7 @@ function createButtons() {
             Number(index);
             turns[index] = currentPlayer;
             button.textContent = currentPlayer; 
+            changeTurn();
         }
         button.addEventListener('click', tileClicked);
         grid.appendChild(button);
@@ -56,24 +57,11 @@ function createResetButton () {
     resetButton.classList.add("btn");
     resetButton.classList.add("btn-primary")
     board.appendChild(resetButton);
+    resetButton.addEventListener('click', function restartGame() {
+        currentPlayer = "X";
+        turns = ["","","","","","","","",""];
+    })
 }
-
-function restartGame() {
-    currentPlayer = "X";
-    turns = ["","","","","","","","",""];
-}
-
-function changeTurn() {
-    currentPlayer = (currentPlayer === "X") ? "O" : "X";
-}
-
-// function tileClicked() {
-//     let index = button.getAttribute("index");
-//     Number(index);
-//     turns[index] = currentPlayer;
-//     tile.textContent = currentPlayer; 
-// }
-
 
 //Check Win 
 /*
