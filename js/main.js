@@ -6,20 +6,9 @@ board.classList.add("d-flex");
 board.classList.add("flex-column")
 board.classList.add("align-items-center")
 
-let symbols = ["X", "O"];
+let currentPlayer = "X";
 let currentTurn = 1;
-let currentSymbol = currentTurn % 2 !== 0 ? symbols[0] : symbols[1];
-let turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
-players = [{
-    "symbol" : symbols[0],
-    "value" : 1,
-    "name" : "Player 1"
-}, 
-{
-    "symbol" : symbols[1],
-    "value": 2,
-    "name" : "Player 2"
-}]
+let turns = ["","","","","","","","",""];
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
 window.addEventListener('load', init);
@@ -31,10 +20,9 @@ function init () {
     board.appendChild(heading);
 
     createButtons();
-    button.addEventListener('click', changeTurn);
 
     createResetButton();
-    resetButton.addEventListener('click', resetGame);
+    resetButton.addEventListener('click', restartGame);
 }
    
 function createButtons() {
@@ -48,7 +36,15 @@ function createButtons() {
             grid.appendChild(column);
         }
         let button = document.createElement("button");
-        button.id = `square-${i}`;
+        button.classList.add("tile");
+        button.setAttribute("index", i-1);
+        function tileClicked() {
+            let index = button.getAttribute("index");
+            Number(index);
+            turns[index] = currentPlayer;
+            button.textContent = currentPlayer; 
+        }
+        button.addEventListener('click', tileClicked);
         grid.appendChild(button);
     }
 }
@@ -56,26 +52,27 @@ function createButtons() {
 function createResetButton () {
     let resetButton = document.createElement("button");
     resetButton.textContent = "Start Over";
-    resetButton.setAttribute("id", resetButton);
+    resetButton.setAttribute("id", "resetButton");
     resetButton.classList.add("btn");
     resetButton.classList.add("btn-primary")
     board.appendChild(resetButton);
 }
 
-function resetTurns() {
-    return turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
+function restartGame() {
+    currentPlayer = "X";
+    turns = ["","","","","","","","",""];
 }
-function resetCounter() {
-    return currentTurn = 1; 
-}
-function resetGame() {
-    resetTurns();
-    resetCounter();
-}
+
 function changeTurn() {
-    button.textContent = currentSymbol;
-    currentTurn++;
+    currentPlayer = (currentPlayer === "X") ? "O" : "X";
 }
+
+// function tileClicked() {
+//     let index = button.getAttribute("index");
+//     Number(index);
+//     turns[index] = currentPlayer;
+//     tile.textContent = currentPlayer; 
+// }
 
 
 //Check Win 
