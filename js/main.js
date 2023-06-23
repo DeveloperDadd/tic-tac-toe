@@ -47,7 +47,6 @@ function createButtons() {
             turns[index] = currentPlayer;
             button.textContent = currentPlayer; 
             checkWinner();
-         //   changeTurn();
         }
         button.addEventListener('click', tileClicked);
         grid.appendChild(button);
