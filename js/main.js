@@ -22,7 +22,7 @@ function init () {
     createButtons();
 
     createResetButton();
-   // resetButton.addEventListener('click', restartGame);
+    resetButton.addEventListener('click', restartGame);
 }
    
 function createButtons() {
@@ -37,7 +37,13 @@ function createButtons() {
         }
         let button = document.createElement("button");
         button.classList.add("tile");
-        button.setAttribute("index", i);
+        button.setAttribute("index", i-1);
+        function tileClicked() {
+            let index = button.getAttribute("index");
+            Number(index);
+            turns[index] = currentPlayer;
+            button.textContent = currentPlayer; 
+        }
         button.addEventListener('click', tileClicked);
         grid.appendChild(button);
     }
@@ -60,6 +66,13 @@ function restartGame() {
 function changeTurn() {
     currentPlayer = (currentPlayer === "X") ? "O" : "X";
 }
+
+// function tileClicked() {
+//     let index = button.getAttribute("index");
+//     Number(index);
+//     turns[index] = currentPlayer;
+//     tile.textContent = currentPlayer; 
+// }
 
 
 //Check Win 
