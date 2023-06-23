@@ -8,9 +8,7 @@ board.classList.add("align-items-center")
 
 let currentPlayer = "X";
 let currentTurn = 1;
-let currentSymbol = currentTurn % 2 !== 0 ? symbols[0] : symbols[1];
 let turns = ["","","","","","","","",""];
-
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
 window.addEventListener('load', init);
@@ -24,7 +22,7 @@ function init () {
     createButtons();
 
     createResetButton();
-    resetButton.addEventListener('click', restartGame);
+   // resetButton.addEventListener('click', restartGame);
 }
    
 function createButtons() {
@@ -39,6 +37,7 @@ function createButtons() {
         }
         let button = document.createElement("button");
         button.classList.add("tile");
+        button.setAttribute("index", i);
         button.addEventListener('click', tileClicked);
         grid.appendChild(button);
     }
