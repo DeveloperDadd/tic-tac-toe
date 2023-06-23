@@ -26,34 +26,39 @@ function init () {
     createButtons();
 
     createResetButton();
-
 }
-   
+
+const buttons = [];
+
 function createButtons() {
-    let grid = document.createElement("div");
-    board.appendChild(grid);
-    for (let i = 1; i < 10; i++) {
-        if (i === 1 || i === 4 || i === 7) {
-            let column = document.createElement("div")
-            column.classList.add("col-sm", "col-4");
-            grid.appendChild(column);
+    for (let i = 0; i < 9; i++) {
+    const button = document.createElement("button");
+    button.textContent = "";
+    button.setAttribute("index", i);
+    buttons.push(button);
+    button.classList.add('tile');
+    function tileClicked() {
+        let index = button.getAttribute("index");
+        Number(index);
+        if(turns[index] !== "" || !running) {
+            return;
         }
-        let button = document.createElement("button");
-        button.classList.add("tile");
-        button.setAttribute("index", i-1);
-        function tileClicked() {
-            let index = button.getAttribute("index");
-            Number(index);
-            if(turns[index] !== "" || !running) {
-                return;
-            }
-            turns[index] = currentPlayer;
-            button.textContent = currentPlayer; 
-            checkWinner();
-        }
-        button.addEventListener('click', tileClicked);
-        grid.appendChild(button);
+        turns[index] = currentPlayer;
+        button.textContent = currentPlayer; 
+        checkWinner();
     }
+    button.addEventListener('click', tileClicked);
+}
+const grid = document.createElement("div");
+grid.style.display = "grid";
+grid.style.gridTemplateColumns = "repeat(3, 1fr)";
+grid.style.gridTemplateRows = "repeat(3, 1fr)";
+
+for (const button of buttons) {
+    grid.appendChild(button);
+}
+    
+board.appendChild(grid);
 }
 
 function createResetButton () {
