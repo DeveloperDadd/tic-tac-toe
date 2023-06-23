@@ -10,16 +10,7 @@ let symbols = ["X", "O"];
 let currentTurn = 1;
 let currentSymbol = currentTurn % 2 !== 0 ? symbols[0] : symbols[1];
 let turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
-players = [{
-    "symbol" : symbols[0],
-    "value" : 1,
-    "name" : "Player 1"
-}, 
-{
-    "symbol" : symbols[1],
-    "value": 2,
-    "name" : "Player 2"
-}]
+
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
 window.addEventListener('load', init);
@@ -31,7 +22,7 @@ function init () {
     board.appendChild(heading);
 
     createButtons();
-    button.addEventListener('click', changeTurn);
+    
 
     createResetButton();
     resetButton.addEventListener('click', resetGame);
