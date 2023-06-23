@@ -6,7 +6,7 @@ board.classList.add("d-flex");
 board.classList.add("flex-column")
 board.classList.add("align-items-center")
 
-let symbols = ["X", "O"];
+let currentPlayer = "X";
 let currentTurn = 1;
 let currentSymbol = currentTurn % 2 !== 0 ? symbols[0] : symbols[1];
 let turns = ["","","","","","","","",""];
