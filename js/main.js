@@ -22,12 +22,9 @@ function init () {
     board.appendChild(heading);
 
     createButtons();
-    let tiles = document.querySelectorAll(".tile");
-
-    
 
     createResetButton();
-    resetButton.addEventListener('click', resetGame);
+    resetButton.addEventListener('click', restartGame);
 }
    
 function createButtons() {
@@ -42,6 +39,7 @@ function createButtons() {
         }
         let button = document.createElement("button");
         button.classList.add("tile");
+        button.addEventListener('click', tileClicked);
         grid.appendChild(button);
     }
 }
@@ -49,22 +47,17 @@ function createButtons() {
 function createResetButton () {
     let resetButton = document.createElement("button");
     resetButton.textContent = "Start Over";
-    resetButton.setAttribute("id", resetButton);
+    resetButton.setAttribute("id", "resetButton");
     resetButton.classList.add("btn");
     resetButton.classList.add("btn-primary")
     board.appendChild(resetButton);
 }
 
-function resetTurns() {
-    return turns = [{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null},{player : null}];
+function restartGame() {
+    currentPlayer = "X";
+    turns = ["","","","","","","","",""];
 }
-function resetCounter() {
-    return currentTurn = 1; 
-}
-function resetGame() {
-    resetTurns();
-    resetCounter();
-}
+
 function changeTurn() {
     currentPlayer = (currentPlayer === "X") ? "O" : "X";
 }
