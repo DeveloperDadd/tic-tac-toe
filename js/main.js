@@ -22,6 +22,8 @@ function init () {
     board.appendChild(heading);
 
     createButtons();
+    let tiles = document.querySelectorAll(".tile");
+
     
 
     createResetButton();
@@ -64,8 +66,7 @@ function resetGame() {
     resetCounter();
 }
 function changeTurn() {
-    button.textContent = currentSymbol;
-    currentTurn++;
+    currentPlayer = (currentPlayer === "X") ? "O" : "X";
 }
 
 
