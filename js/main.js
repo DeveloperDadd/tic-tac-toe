@@ -8,11 +8,13 @@ board.classList.add("align-items-center");
 let currentPlayer = "X";
 let turns = ["","","","","","","","",""];
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+let running = false;
 
 window.addEventListener('load', init);
 
 function init () {
 
+    running = true;
     let heading = document.createElement("h1");
     heading.textContent = "Tic-Tac-Toe";
     board.appendChild(heading);
@@ -40,10 +42,13 @@ function createButtons() {
         function tileClicked() {
             let index = button.getAttribute("index");
             Number(index);
+            if(turns[index] !== "" || !running) {
+                return;
+            }
             turns[index] = currentPlayer;
             button.textContent = currentPlayer; 
             checkWinner();
-            changeTurn();
+         //   changeTurn();
         }
         button.addEventListener('click', tileClicked);
         grid.appendChild(button);
@@ -63,6 +68,7 @@ function createResetButton () {
         for (let i = 0; i < turns.length; i++) {
             document.getElementsByClassName("tile")[i].textContent = turns[i];
         }
+        running = true;
     })
 }
 
@@ -91,35 +97,11 @@ function checkWinner() {
     }
     if(roundWon) {
         alert(`${currentPlayer} wins!`);
+        running = false;
+    } else if (!turns.includes("")) {
+        alert("Draw! Play again?");
+        running = false;
+    } else {
+        changeTurn();
     }
 }
-
-/*
-    turns = [{
-        player: players[0].value, // x
-    },
-    {
-        player: players[0].value, // o
-    }]...
-
-
-    function checkWinCondition () {
-        var first = null;
-        var second = null;
-        var third = null;
-
-        for(let i = 0; i < winConditions.length; i++) {
-            // loop thru each element in the win condition
-            // get the first winTotals value, ex. 3
-            //if total of winCondition[0] = 3, player 1 wins
-            //if total == 6, player 2 wins
-            //var total = 0;
-            var v = winTotal[0];
-            if ( v == total) {
-                gameStatus
-            }
-           
-        }
-    }
-
-*/
