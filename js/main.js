@@ -86,8 +86,11 @@ function checkWinner() {
         }
         if(tileOne === tileTwo && tileTwo === tileThree) {
             roundWon = true;
-            alert(`${currentPlayer}` wins!)
+            break;
         }
+    }
+    if(roundWon) {
+        alert(`${currentPlayer} wins!`);
     }
 }
 
