@@ -1,5 +1,5 @@
 let board = document.getElementById("board");
-board.classList.add("text-primary");
+board.classList.add("text-light");
 board.classList.add("container-fluid");
 board.classList.add("d-flex");
 board.classList.add("flex-column");
@@ -50,6 +50,7 @@ function createButtons() {
     button.addEventListener('click', tileClicked);
 }
 const grid = document.createElement("div");
+grid.setAttribute("id", "grid");
 grid.style.display = "grid";
 grid.style.gridTemplateColumns = "repeat(3, 1fr)";
 grid.style.gridTemplateRows = "repeat(3, 1fr)";
@@ -65,7 +66,7 @@ function createResetButton () {
     let resetButton = document.createElement("button");
     resetButton.textContent = "Start Over";
     resetButton.setAttribute("id", "resetButton");
-    resetButton.classList.add("btn", "btn-primary");
+    resetButton.classList.add("btn", "btn-dark");
     board.appendChild(resetButton);
     resetButton.addEventListener('click', function restartGame() {
         currentPlayer = "X";

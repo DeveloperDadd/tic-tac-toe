@@ -1,4 +1,22 @@
 .tile {
     width: 100px;
     height: 100px;
+    border: solid black 1px;
+    box-shadow: 0px 0px 0px 2px;
+    font-size: 50px;
+    background-color: gray;
+    color: white;
+}
+
+#grid {
+    margin-bottom:10px;
+}
+
+body {
+    background-image: url(/img/space.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    height: 100vh;
 }
