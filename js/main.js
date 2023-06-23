@@ -1,20 +1,20 @@
 let board = document.getElementById("board");
 board.classList.add("text-primary");
 board.classList.add("container-fluid");
-board.classList.add("text-center");
 board.classList.add("d-flex");
-board.classList.add("flex-column")
-board.classList.add("align-items-center")
+board.classList.add("flex-column");
+board.classList.add("align-items-center");
 
 let currentPlayer = "X";
-let currentTurn = 1;
 let turns = ["","","","","","","","",""];
 const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+let running = false;
 
 window.addEventListener('load', init);
 
 function init () {
 
+    running = true;
     let heading = document.createElement("h1");
     heading.textContent = "Tic-Tac-Toe";
     board.appendChild(heading);
@@ -36,13 +36,19 @@ function createButtons() {
             grid.appendChild(column);
         }
         let button = document.createElement("button");
+        button.textContent = "";
         button.classList.add("tile");
         button.setAttribute("index", i-1);
         function tileClicked() {
             let index = button.getAttribute("index");
             Number(index);
+            if(turns[index] !== "" || !running) {
+                return;
+            }
             turns[index] = currentPlayer;
             button.textContent = currentPlayer; 
+            checkWinner();
+         //   changeTurn();
         }
         button.addEventListener('click', tileClicked);
         grid.appendChild(button);
@@ -56,52 +62,46 @@ function createResetButton () {
     resetButton.classList.add("btn");
     resetButton.classList.add("btn-primary")
     board.appendChild(resetButton);
-}
-
-function restartGame() {
-    currentPlayer = "X";
-    turns = ["","","","","","","","",""];
+    resetButton.addEventListener('click', function restartGame() {
+        currentPlayer = "X";
+        turns = ["","","","","","","","",""];
+        for (let i = 0; i < turns.length; i++) {
+            document.getElementsByClassName("tile")[i].textContent = turns[i];
+        }
+        running = true;
+    })
 }
 
 function changeTurn() {
     currentPlayer = (currentPlayer === "X") ? "O" : "X";
 }
 
-// function tileClicked() {
-//     let index = button.getAttribute("index");
-//     Number(index);
-//     turns[index] = currentPlayer;
-//     tile.textContent = currentPlayer; 
-// }
-
-
 //Check Win 
-/*
-    turns = [{
-        player: players[0].value, // x
-    },
-    {
-        player: players[0].value, // o
-    }]...
 
+function checkWinner() {
+    let roundWon = false;
 
-    function checkWinCondition () {
-        var first = null;
-        var second = null;
-        var third = null;
+    for (let i = 0; i < winningCombos.length; i++) {
+        const winCondition = winningCombos[i];
+        const tileOne = turns[winCondition[0]];
+        const tileTwo = turns[winCondition[1]];
+        const tileThree = turns[winCondition[2]]; 
 
-        for(let i = 0; i < winConditions.length; i++) {
-            // loop thru each element in the win condition
-            // get the first winTotals value, ex. 3
-            //if total of winCondition[0] = 3, player 1 wins
-            //if total == 6, player 2 wins
-            //var total = 0;
-            var v = winTotal[0];
-            if ( v == total) {
-                gameStatus
-            }
-           
+        if(tileOne === "" || tileTwo === "" || tileThree === "") {
+            continue;
+        }
+        if(tileOne === tileTwo && tileTwo === tileThree) {
+            roundWon = true;
+            break;
         }
     }
-
-*/
+    if(roundWon) {
+        alert(`${currentPlayer} wins!`);
+        running = false;
+    } else if (!turns.includes("")) {
+        alert("Draw! Play again?");
+        running = false;
+    } else {
+        changeTurn();
+    }
+}
