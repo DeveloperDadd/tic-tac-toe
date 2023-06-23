@@ -60,7 +60,14 @@ function createResetButton () {
     resetButton.addEventListener('click', function restartGame() {
         currentPlayer = "X";
         turns = ["","","","","","","","",""];
+        for (let i = 0; i < turns.length; i++) {
+            document.getElementsByClassName("tile")[i].textContent = turns[i];
+        }
     })
+}
+
+function changeTurn() {
+    currentPlayer = (currentPlayer === "X") ? "O" : "X";
 }
 
 //Check Win 
